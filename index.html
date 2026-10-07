@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>HACKER OS</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ================================
+         BOOT SCREEN
+    ================================= -->
+
+    <div id="bootScreen">
+
+        <div class="boot-logo">
+            <div class="boot-symbol">◈</div>
+
+            <h1>HACKER<span>OS</span></h1>
+
+            <p>INITIALIZING SYSTEM...</p>
+        </div>
+
+        <div class="boot-progress">
+
+            <div id="bootBar"></div>
+
+        </div>
+
+        <div id="bootText">
+            Loading kernel...
+        </div>
+
+    </div>
+
+
+    <!-- ================================
+         DESKTOP
+    ================================= -->
+
+    <main id="desktop">
+
+        <!-- Background -->
+        <div class="grid"></div>
+
+        <div class="scanlines"></div>
+
+
+        <!-- ============================
+             TOP SYSTEM BAR
+        ============================= -->
+
+        <header class="topbar">
+
+            <div class="system-name">
+
+                <span class="system-icon">◆</span>
+
+                HACKER<span>OS</span>
+
+            </div>
+
+
+            <div class="system-center">
+
+                <span class="connection-dot"></span>
+
+                SECURE CONNECTION
+
+            </div>
+
+
+            <div class="system-right">
+
+                <span id="network">
+                    NET: 100%
+                </span>
+
+                <span id="topClock">
+                    00:00:00
+                </span>
+
+            </div>
+
+        </header>
+
+
+        <!-- ============================
+             DESKTOP ICONS
+        ============================= -->
+
+        <section class="desktop-icons">
+
+
+            <!-- Terminal -->
+
+            <button
+                class="desktop-icon"
+                onclick="openApp('terminal')"
+            >
+
+                <div class="icon terminal-icon">
+                    >
+                </div>
+
+                <span>Terminal</span>
+
+            </button>
+
+
+            <!-- Files -->
+
+            <button
+                class="desktop-icon"
+                onclick="openApp('files')"
+            >
+
+                <div class="icon folder-icon">
+                    ▰
+                </div>
+
+                <span>Files</span>
+
+            </button>
+
+
+            <!-- Browser -->
+
+            <button
+                class="desktop-icon"
+                onclick="openApp('browser')"
+            >
+
+                <div class="icon browser-icon">
+                    ◉
+                </div>
+
+                <span>Browser</span>
+
+            </button>
+
+
+            <!-- Calculator -->
+
+            <button
+                class="desktop-icon"
+                onclick="openApp('calculator')"
+            >
+
+                <div class="icon calc-icon">
+                    #
+                </div>
+
+                <span>Calculator</span>
+
+            </button>
+
+
+            <!-- Settings -->
+
+            <button
+                class="desktop-icon"
+                onclick="openApp('settings')"
+            >
+
+                <div class="icon settings-icon">
+                    ⚙
+                </div>
+
+                <span>Settings</span>
+
+            </button>
+
+
+        </section>
+
+
+        <!-- ============================
+             CENTER HUD
+        ============================= -->
+
+        <section class="hud">
+
+            <div class="hud-circle">
+
+                <div class="hud-inner">
+
+                    <span class="hud-status">
+                        SYSTEM
+                    </span>
+
+                    <strong>
+                        ONLINE
+                    </strong>
+
+                    <small>
+                        100%
+                    </small>
+
+                </div>
+
+            </div>
+
+            <p>
+                HACKER OS // NEXUS CORE
+            </p>
+
+        </section>
+
+
+        <!-- ============================
+             TERMINAL WINDOW
+        ============================= -->
+
+        <section
+            class="window terminal-window"
+            id="terminal"
+        >
+
+            <div class="window-header">
+
+                <div class="window-title">
+
+                    <span class="window-dot green"></span>
+
+                    root@nexus:~
+
+                </div>
+
+                <div class="window-controls">
+
+                    <button onclick="minimizeApp('terminal')">
+                        −
+                    </button>
+
+                    <button onclick="maximizeApp('terminal')">
+                        □
+                    </button>
+
+                    <button
+                        class="close"
+                        onclick="closeApp('terminal')"
+                    >
+                        ×
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="terminal-content"
+                id="terminalOutput"
+            >
+
+                <p class="green-text">
+                    HACKER OS TERMINAL v1.0
+                </p>
+
+                <p>
+                    Kernel initialized successfully.
+                </p>
+
+                <p>
+                    Security layer:
+                    <span class="green-text">
+                        ACTIVE
+                    </span>
+                </p>
+
+                <br>
+
+                <p>
+                    Type
+                    <span class="cyan-text">
+                        help
+                    </span>
+                    to see available commands.
+                </p>
+
+                <div class="terminal-input">
+
+                    <span>
+                        root@nexus:~$
+                    </span>
+
+                    <input
+                        id="terminalInput"
+                        autocomplete="off"
+                        spellcheck="false"
+                    >
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ============================
+             FILE MANAGER
+        ============================= -->
+
+        <section
+            class="window app-window"
+            id="files"
+        >
+
+            <div class="window-header">
+
+                <div class="window-title">
+
+                    <span class="window-dot cyan"></span>
+
+                    FILE MANAGER
+
+                </div>
+
+                <div class="window-controls">
+
+                    <button onclick="minimizeApp('files')">
+                        −
+                    </button>
+
+                    <button onclick="maximizeApp('files')">
+                        □
+                    </button>
+
+                    <button
+                        class="close"
+                        onclick="closeApp('files')"
+                    >
+                        ×
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="file-content">
+
+                <div class="file-sidebar">
+
+                    <p>LOCATIONS</p>
+
+                    <button>▣ Desktop</button>
+                    <button>▰ Documents</button>
+                    <button>◈ Downloads</button>
+                    <button>◆ System</button>
+
+                </div>
+
+
+                <div class="files">
+
+                    <div class="file">
+
+                        <div>📁</div>
+
+                        <span>Projects</span>
+
+                    </div>
+
+                    <div class="file">
+
+                        <div>📁</div>
+
+                        <span>Downloads</span>
+
+                    </div>
+
+                    <div class="file">
+
+                        <div>📁</div>
+
+                        <span>System</span>
+
+                    </div>
+
+                    <div class="file">
+
+                        <div>📄</div>
+
+                        <span>readme.txt</span>
+
+                    </div>
+
+                    <div class="file">
+
+                        <div>⚙</div>
+
+                        <span>config.sys</span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ============================
+             BROWSER
+        ============================= -->
+
+        <section
+            class="window app-window"
+            id="browser"
+        >
+
+            <div class="window-header">
+
+                <div class="window-title">
+
+                    <span class="window-dot purple"></span>
+
+                    NEXUS BROWSER
+
+                </div>
+
+                <div class="window-controls">
+
+                    <button onclick="minimizeApp('browser')">
+                        −
+                    </button>
+
+                    <button onclick="maximizeApp('browser')">
+                        □
+                    </button>
+
+                    <button
+                        class="close"
+                        onclick="closeApp('browser')"
+                    >
+                        ×
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="browser-content">
+
+                <div class="address-bar">
+
+                    <span>🔒</span>
+
+                    <input
+                        id="browserInput"
+                        value="https://nexus.local"
+                    >
+
+                    <button onclick="navigateBrowser()">
+                        GO
+                    </button>
+
+                </div>
+
+
+                <div class="browser-home">
+
+                    <div class="browser-logo">
+                        ◈
+                    </div>
+
+                    <h2>
+                        NEXUS
+                    </h2>
+
+                    <p>
+                        SECURE CYBER NETWORK
+                    </p>
+
+                    <div
+                        class="browser-result"
+                        id="browserResult"
+                    >
+                        CONNECTION SECURE
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ============================
+             CALCULATOR
+        ============================= -->
+
+        <section
+            class="window app-window calculator-window"
+            id="calculator"
+        >
+
+            <div class="window-header">
+
+                <div class="window-title">
+
+                    <span class="window-dot green"></span>
+
+                    CALCULATOR
+
+                </div>
+
+                <div class="window-controls">
+
+                    <button onclick="minimizeApp('calculator')">
+                        −
+                    </button>
+
+                    <button onclick="maximizeApp('calculator')">
+                        □
+                    </button>
+
+                    <button
+                        class="close"
+                        onclick="closeApp('calculator')"
+                    >
+                        ×
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="calculator">
+
+                <input
+                    id="calcDisplay"
+                    readonly
+                    value="0"
+                >
+
+                <div class="calc-buttons">
+
+                    <button onclick="clearCalc()">C</button>
+                    <button onclick="calcInput('/')">÷</button>
+                    <button onclick="calcInput('*')">×</button>
+                    <button onclick="calcInput('-')">−</button>
+
+                    <button onclick="calcInput('7')">7</button>
+                    <button onclick="calcInput('8')">8</button>
+                    <button onclick="calcInput('9')">9</button>
+                    <button onclick="calcInput('+')">+</button>
+
+                    <button onclick="calcInput('4')">4</button>
+                    <button onclick="calcInput('5')">5</button>
+                    <button onclick="calcInput('6')">6</button>
+                    <button onclick="calculate()">=</button>
+
+                    <button onclick="calcInput('1')">1</button>
+                    <button onclick="calcInput('2')">2</button>
+                    <button onclick="calcInput('3')">3</button>
+                    <button onclick="calcInput('0')">0</button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ============================
+             SETTINGS
+        ============================= -->
+
+        <section
+            class="window app-window"
+            id="settings"
+        >
+
+            <div class="window-header">
+
+                <div class="window-title">
+
+                    <span class="window-dot yellow"></span>
+
+                    SYSTEM SETTINGS
+
+                </div>
+
+                <div class="window-controls">
+
+                    <button onclick="minimizeApp('settings')">
+                        −
+                    </button>
+
+                    <button onclick="maximizeApp('settings')">
+                        □
+                    </button>
+
+                    <button
+                        class="close"
+                        onclick="closeApp('settings')"
+                    >
+                        ×
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="settings-content">
+
+                <h2>
+                    SYSTEM CONFIGURATION
+                </h2>
+
+                <div class="setting">
+
+                    <span>
+                        CYBER MODE
+                    </span>
+
+                    <button
+                        id="cyberToggle"
+                        onclick="toggleCyberMode()"
+                    >
+                        ON
+                    </button>
+
+                </div>
+
+
+                <div class="setting">
+
+                    <span>
+                        SCANLINES
+                    </span>
+
+                    <button
+                        onclick="toggleScanlines()"
+                    >
+                        ON
+                    </button>
+
+                </div>
+
+
+                <div class="setting">
+
+                    <span>
+                        NEON EFFECT
+                    </span>
+
+                    <button
+                        onclick="toggleNeon()"
+                    >
+                        ON
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ============================
+             NOTIFICATION
+        ============================= -->
+
+        <div
+            class="notification"
+            id="notification"
+        >
+
+            <div class="notification-icon">
+                ✓
+            </div>
+
+            <div>
+
+                <strong>
+                    SYSTEM
+                </strong>
+
+                <p>
+                    All systems operational.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- ============================
+             TASKBAR
+        ============================= -->
+
+        <footer class="taskbar">
+
+            <button
+                class="start-button"
+                onclick="toggleStartMenu()"
+            >
+                ◈
+            </button>
+
+
+            <div
+                class="task-apps"
+                id="taskApps"
+            >
+            </div>
+
+
+            <div class="task-status">
+
+                <span>
+                    ◉
+                </span>
+
+                <span id="taskTime">
+                    00:00
+                </span>
+
+                <span>
+                    🔋 98%
+                </span>
+
+            </div>
+
+        </footer>
+
+
+        <!-- ============================
+             START MENU
+        ============================= -->
+
+        <div
+            class="start-menu"
+            id="startMenu"
+        >
+
+            <div class="start-header">
+
+                <div class="user-avatar">
+                    N
+                </div>
+
+                <div>
+
+                    <strong>
+                        NETRUNNER
+                    </strong>
+
+                    <small>
+                        ADMINISTRATOR
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="start-search">
+
+                <input
+                    placeholder="Search applications..."
+                    id="appSearch"
+                >
+
+            </div>
+
+
+            <div class="start-apps">
+
+                <button onclick="openFromMenu('terminal')">
+                    <span>></span>
+                    Terminal
+                </button>
+
+                <button onclick="openFromMenu('files')">
+                    <span>▰</span>
+                    File Manager
+                </button>
+
+                <button onclick="openFromMenu('browser')">
+                    <span>◉</span>
+                    Nexus Browser
+                </button>
+
+                <button onclick="openFromMenu('calculator')">
+                    <span>#</span>
+                    Calculator
+                </button>
+
+                <button onclick="openFromMenu('settings')">
+                    <span>⚙</span>
+                    Settings
+                </button>
+
+            </div>
+
+
+            <div class="start-footer">
+
+                <span>
+                    HACKER OS v1.0
+                </span>
+
+                <button onclick="shutdown()">
+                    ⏻
+                </button>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <script src="java.js"></script>
+
+</body>
+</html>

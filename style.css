@@ -1,0 +1,1512 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --cyan: #00f6ff;
+    --green: #00ff88;
+    --red: #ff3158;
+    --purple: #a855f7;
+    --yellow: #ffd166;
+
+    --bg: #03060b;
+    --panel: rgba(7, 14, 23, .94);
+    --border: rgba(0, 246, 255, .2);
+
+    --text: #dffaff;
+    --muted: #597487;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+
+    background: var(--bg);
+
+    color: var(--text);
+
+    font-family:
+        "Courier New",
+        monospace;
+}
+
+
+/* =================================
+   BOOT SCREEN
+================================= */
+
+#bootScreen {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 9999;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    background: #020509;
+
+    transition: opacity .7s;
+}
+
+.boot-logo {
+    text-align: center;
+}
+
+.boot-symbol {
+    font-size: 70px;
+
+    color: var(--cyan);
+
+    text-shadow:
+        0 0 15px var(--cyan),
+        0 0 50px var(--cyan);
+
+    animation: bootPulse 1.5s infinite;
+}
+
+@keyframes bootPulse {
+
+    50% {
+        transform: scale(1.08);
+
+        filter:
+            brightness(1.5);
+    }
+}
+
+.boot-logo h1 {
+    margin-top: 15px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 35px;
+
+    letter-spacing: 8px;
+}
+
+.boot-logo h1 span {
+    color: var(--cyan);
+}
+
+.boot-logo p {
+    margin-top: 15px;
+
+    color: var(--green);
+
+    font-size: 11px;
+
+    letter-spacing: 3px;
+}
+
+.boot-progress {
+    width: 320px;
+
+    height: 3px;
+
+    margin-top: 35px;
+
+    background: #101c27;
+}
+
+#bootBar {
+    width: 0%;
+
+    height: 100%;
+
+    background: var(--cyan);
+
+    box-shadow:
+        0 0 15px var(--cyan);
+
+    transition: width .1s;
+}
+
+#bootText {
+    margin-top: 12px;
+
+    color: var(--muted);
+
+    font-size: 10px;
+}
+
+
+/* =================================
+   DESKTOP
+================================= */
+
+#desktop {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    background:
+        radial-gradient(
+            circle at 50% 50%,
+            rgba(0, 246, 255, .06),
+            transparent 40%
+        ),
+
+        #03060b;
+}
+
+
+/* =================================
+   GRID
+================================= */
+
+.grid {
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    opacity: .5;
+
+    background-image:
+        linear-gradient(
+            rgba(0,246,255,.035) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(0,246,255,.035) 1px,
+            transparent 1px
+        );
+
+    background-size: 45px 45px;
+}
+
+
+/* =================================
+   SCANLINES
+================================= */
+
+.scanlines {
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    z-index: 500;
+
+    background:
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 3px,
+            rgba(0,246,255,.015) 4px
+        );
+}
+
+
+/* =================================
+   TOP BAR
+================================= */
+
+.topbar {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+    right: 0;
+
+    height: 55px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 25px;
+
+    border-bottom:
+        1px solid var(--border);
+
+    background:
+        rgba(2, 7, 12, .85);
+
+    backdrop-filter: blur(10px);
+
+    z-index: 50;
+}
+
+.system-name {
+    font-weight: bold;
+
+    letter-spacing: 3px;
+
+    font-size: 14px;
+}
+
+.system-name span {
+    color: var(--cyan);
+
+    text-shadow:
+        0 0 10px var(--cyan);
+}
+
+.system-icon {
+    color: var(--cyan);
+
+    margin-right: 8px;
+}
+
+.system-center {
+    color: var(--muted);
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+}
+
+.connection-dot {
+    display: inline-block;
+
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: var(--green);
+
+    box-shadow:
+        0 0 10px var(--green);
+
+    margin-right: 6px;
+}
+
+.system-right {
+    display: flex;
+
+    gap: 20px;
+
+    color: var(--cyan);
+
+    font-size: 10px;
+}
+
+
+/* =================================
+   DESKTOP ICONS
+================================= */
+
+.desktop-icons {
+    position: absolute;
+
+    top: 85px;
+    left: 25px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 18px;
+
+    z-index: 10;
+}
+
+.desktop-icon {
+    width: 80px;
+
+    border: 0;
+
+    background: transparent;
+
+    color: var(--muted);
+
+    cursor: pointer;
+
+    font-family: inherit;
+
+    transition: .25s;
+}
+
+.desktop-icon:hover {
+    color: white;
+
+    transform: translateY(-3px);
+
+    text-shadow:
+        0 0 10px var(--cyan);
+}
+
+.icon {
+    width: 48px;
+    height: 48px;
+
+    margin: auto;
+
+    display: grid;
+
+    place-items: center;
+
+    border: 1px solid var(--border);
+
+    background:
+        rgba(0,246,255,.03);
+
+    font-size: 21px;
+
+    color: var(--cyan);
+
+    box-shadow:
+        inset 0 0 15px
+        rgba(0,246,255,.04);
+}
+
+.desktop-icon span {
+    display: block;
+
+    margin-top: 7px;
+
+    font-size: 9px;
+}
+
+.folder-icon {
+    color: var(--yellow);
+}
+
+.browser-icon {
+    color: var(--purple);
+}
+
+.calc-icon {
+    color: var(--green);
+}
+
+.settings-icon {
+    color: var(--yellow);
+}
+
+
+/* =================================
+   HUD
+================================= */
+
+.hud {
+    position: absolute;
+
+    top: 50%;
+
+    left: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    text-align: center;
+
+    opacity: .65;
+
+    pointer-events: none;
+}
+
+.hud-circle {
+    width: 280px;
+    height: 280px;
+
+    border: 1px solid
+        rgba(0,246,255,.15);
+
+    border-radius: 50%;
+
+    display: grid;
+
+    place-items: center;
+
+    animation:
+        rotate 20s linear infinite;
+
+    position: relative;
+}
+
+.hud-circle::before,
+.hud-circle::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 20px;
+
+    border: 1px dashed
+        rgba(0,246,255,.12);
+
+    border-radius: 50%;
+}
+
+.hud-circle::after {
+    inset: 55px;
+
+    border-color:
+        rgba(0,255,136,.15);
+}
+
+@keyframes rotate {
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+
+.hud-inner {
+    position: absolute;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+
+    transform:
+        rotate(0deg);
+}
+
+.hud-status {
+    color: var(--muted);
+
+    font-size: 9px;
+
+    letter-spacing: 3px;
+}
+
+.hud-inner strong {
+    color: var(--green);
+
+    font-size: 22px;
+
+    text-shadow:
+        0 0 15px var(--green);
+}
+
+.hud-inner small {
+    color: var(--cyan);
+
+    font-size: 9px;
+}
+
+.hud > p {
+    margin-top: 18px;
+
+    color: var(--muted);
+
+    font-size: 8px;
+
+    letter-spacing: 3px;
+}
+
+
+/* =================================
+   WINDOWS
+================================= */
+
+.window {
+    position: absolute;
+
+    display: none;
+
+    flex-direction: column;
+
+    min-width: 320px;
+
+    min-height: 200px;
+
+    background:
+        var(--panel);
+
+    border:
+        1px solid var(--border);
+
+    box-shadow:
+        0 20px 60px
+        rgba(0,0,0,.55),
+
+        0 0 30px
+        rgba(0,246,255,.05);
+
+    backdrop-filter: blur(15px);
+
+    z-index: 100;
+
+    animation: openWindow .2s ease;
+}
+
+@keyframes openWindow {
+
+    from {
+        opacity: 0;
+
+        transform:
+            scale(.95)
+            translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            scale(1)
+            translateY(0);
+    }
+}
+
+.window.active {
+    display: flex;
+}
+
+.window.maximized {
+    left: 0 !important;
+    top: 55px !important;
+
+    width: 100% !important;
+    height: calc(100% - 105px) !important;
+}
+
+
+/* =================================
+   WINDOW HEADER
+================================= */
+
+.window-header {
+    height: 38px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 10px;
+
+    border-bottom:
+        1px solid var(--border);
+
+    background:
+        rgba(0,0,0,.25);
+
+    cursor: move;
+
+    user-select: none;
+}
+
+.window-title {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    font-size: 10px;
+
+    color: var(--muted);
+}
+
+.window-dot {
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: var(--green);
+
+    box-shadow:
+        0 0 8px currentColor;
+}
+
+.window-dot.cyan {
+    background: var(--cyan);
+}
+
+.window-dot.purple {
+    background: var(--purple);
+}
+
+.window-dot.yellow {
+    background: var(--yellow);
+}
+
+.window-controls {
+    display: flex;
+
+    gap: 4px;
+}
+
+.window-controls button {
+    width: 25px;
+    height: 23px;
+
+    border: 0;
+
+    background: transparent;
+
+    color: var(--muted);
+
+    cursor: pointer;
+
+    font-family: inherit;
+}
+
+.window-controls button:hover {
+    color: white;
+
+    background:
+        rgba(255,255,255,.06);
+}
+
+.window-controls .close:hover {
+    color: var(--red);
+
+    background:
+        rgba(255,49,88,.1);
+}
+
+
+/* =================================
+   TERMINAL
+================================= */
+
+.terminal-window {
+    width: 650px;
+    height: 420px;
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(-50%, -50%);
+}
+
+.terminal-content {
+    flex: 1;
+
+    padding: 18px;
+
+    overflow-y: auto;
+
+    color: #7690a5;
+
+    font-size: 11px;
+
+    line-height: 1.8;
+
+    background:
+        rgba(0,0,0,.3);
+}
+
+.green-text {
+    color: var(--green);
+}
+
+.cyan-text {
+    color: var(--cyan);
+}
+
+.terminal-input {
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    margin-top: 8px;
+}
+
+.terminal-input span {
+    color: var(--cyan);
+}
+
+.terminal-input input {
+    flex: 1;
+
+    border: 0;
+
+    outline: 0;
+
+    background: transparent;
+
+    color: white;
+
+    font-family: inherit;
+
+    font-size: 11px;
+}
+
+
+/* =================================
+   FILE MANAGER
+================================= */
+
+.app-window {
+    width: 650px;
+    height: 430px;
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(-50%, -50%);
+}
+
+.file-content {
+    display: flex;
+
+    flex: 1;
+}
+
+.file-sidebar {
+    width: 150px;
+
+    padding: 15px;
+
+    border-right:
+        1px solid var(--border);
+}
+
+.file-sidebar p {
+    color: var(--muted);
+
+    font-size: 8px;
+
+    margin-bottom: 15px;
+
+    letter-spacing: 2px;
+}
+
+.file-sidebar button {
+    display: block;
+
+    width: 100%;
+
+    border: 0;
+
+    background: transparent;
+
+    color: var(--muted);
+
+    padding: 9px;
+
+    text-align: left;
+
+    font-family: inherit;
+
+    font-size: 9px;
+
+    cursor: pointer;
+}
+
+.file-sidebar button:hover {
+    color: var(--cyan);
+
+    background:
+        rgba(0,246,255,.05);
+}
+
+.files {
+    flex: 1;
+
+    padding: 20px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    align-content: start;
+
+    gap: 20px;
+}
+
+.file {
+    text-align: center;
+
+    color: var(--muted);
+
+    font-size: 9px;
+
+    cursor: pointer;
+}
+
+.file div {
+    font-size: 30px;
+
+    margin-bottom: 8px;
+}
+
+.file:hover {
+    color: white;
+}
+
+
+/* =================================
+   BROWSER
+================================= */
+
+.browser-content {
+    flex: 1;
+
+    display: flex;
+
+    flex-direction: column;
+}
+
+.address-bar {
+    display: flex;
+
+    gap: 8px;
+
+    padding: 10px;
+
+    border-bottom:
+        1px solid var(--border);
+}
+
+.address-bar input {
+    flex: 1;
+
+    border: 1px solid
+        rgba(0,246,255,.12);
+
+    outline: 0;
+
+    background: #02070c;
+
+    color: var(--cyan);
+
+    padding: 8px;
+
+    font-family: inherit;
+
+    font-size: 10px;
+}
+
+.address-bar button {
+    background: transparent;
+
+    color: var(--cyan);
+
+    border: 1px solid var(--border);
+
+    padding: 0 15px;
+
+    font-family: inherit;
+
+    cursor: pointer;
+}
+
+.browser-home {
+    flex: 1;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+}
+
+.browser-logo {
+    font-size: 70px;
+
+    color: var(--purple);
+
+    text-shadow:
+        0 0 30px var(--purple);
+}
+
+.browser-home h2 {
+    font-size: 25px;
+
+    letter-spacing: 8px;
+}
+
+.browser-home p {
+    color: var(--muted);
+
+    font-size: 9px;
+
+    margin-top: 10px;
+}
+
+.browser-result {
+    margin-top: 30px;
+
+    color: var(--green);
+
+    font-size: 10px;
+}
+
+
+/* =================================
+   CALCULATOR
+================================= */
+
+.calculator-window {
+    width: 330px;
+
+    height: 440px;
+}
+
+.calculator {
+    padding: 15px;
+}
+
+#calcDisplay {
+    width: 100%;
+
+    height: 70px;
+
+    margin-bottom: 12px;
+
+    border: 1px solid var(--border);
+
+    outline: 0;
+
+    background: #020609;
+
+    color: var(--cyan);
+
+    font-family: inherit;
+
+    font-size: 25px;
+
+    text-align: right;
+
+    padding: 10px;
+
+    text-shadow:
+        0 0 10px var(--cyan);
+}
+
+.calc-buttons {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 7px;
+}
+
+.calc-buttons button {
+    height: 55px;
+
+    border: 1px solid var(--border);
+
+    background:
+        rgba(0,246,255,.03);
+
+    color: var(--text);
+
+    font-family: inherit;
+
+    font-size: 15px;
+
+    cursor: pointer;
+
+    transition: .15s;
+}
+
+.calc-buttons button:hover {
+    background:
+        rgba(0,246,255,.12);
+
+    color: var(--cyan);
+
+    box-shadow:
+        0 0 10px
+        rgba(0,246,255,.1);
+}
+
+
+/* =================================
+   SETTINGS
+================================= */
+
+.settings-content {
+    padding: 25px;
+}
+
+.settings-content h2 {
+    color: var(--cyan);
+
+    font-size: 14px;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 30px;
+}
+
+.setting {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 15px 0;
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,.05);
+
+    color: var(--muted);
+
+    font-size: 10px;
+}
+
+.setting button {
+    min-width: 55px;
+
+    padding: 6px 10px;
+
+    background: transparent;
+
+    border: 1px solid var(--green);
+
+    color: var(--green);
+
+    font-family: inherit;
+
+    cursor: pointer;
+}
+
+
+/* =================================
+   TASKBAR
+================================= */
+
+.taskbar {
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    height: 50px;
+
+    display: flex;
+
+    align-items: center;
+
+    padding: 0 12px;
+
+    background:
+        rgba(2,7,12,.92);
+
+    border-top:
+        1px solid var(--border);
+
+    backdrop-filter: blur(12px);
+
+    z-index: 600;
+}
+
+.start-button {
+    width: 35px;
+    height: 35px;
+
+    border: 1px solid var(--border);
+
+    background:
+        rgba(0,246,255,.05);
+
+    color: var(--cyan);
+
+    font-size: 18px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 0 10px
+        rgba(0,246,255,.08);
+}
+
+.start-button:hover {
+    background:
+        rgba(0,246,255,.15);
+}
+
+.task-apps {
+    display: flex;
+
+    gap: 5px;
+
+    margin-left: 10px;
+}
+
+.task-app {
+    height: 32px;
+
+    min-width: 90px;
+
+    padding: 0 12px;
+
+    border: 1px solid
+        rgba(0,246,255,.1);
+
+    background:
+        rgba(0,246,255,.03);
+
+    color: var(--muted);
+
+    font-family: inherit;
+
+    font-size: 8px;
+
+    cursor: pointer;
+}
+
+.task-app.active {
+    color: var(--cyan);
+
+    border-color:
+        rgba(0,246,255,.35);
+}
+
+.task-status {
+    margin-left: auto;
+
+    display: flex;
+
+    gap: 15px;
+
+    color: var(--muted);
+
+    font-size: 9px;
+}
+
+
+/* =================================
+   START MENU
+================================= */
+
+.start-menu {
+    position: absolute;
+
+    left: 10px;
+    bottom: 60px;
+
+    width: 310px;
+
+    background:
+        rgba(5,12,20,.97);
+
+    border:
+        1px solid var(--border);
+
+    box-shadow:
+        0 20px 60px
+        rgba(0,0,0,.6),
+
+        0 0 30px
+        rgba(0,246,255,.05);
+
+    z-index: 700;
+
+    display: none;
+
+    animation: menuOpen .15s ease;
+}
+
+.start-menu.show {
+    display: block;
+}
+
+@keyframes menuOpen {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+.start-header {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 20px;
+
+    border-bottom:
+        1px solid var(--border);
+}
+
+.user-avatar {
+    width: 38px;
+    height: 38px;
+
+    display: grid;
+
+    place-items: center;
+
+    border: 1px solid var(--cyan);
+
+    color: var(--cyan);
+
+    box-shadow:
+        0 0 12px
+        rgba(0,246,255,.2);
+}
+
+.start-header strong {
+    display: block;
+
+    font-size: 10px;
+}
+
+.start-header small {
+    color: var(--muted);
+
+    font-size: 8px;
+}
+
+.start-search {
+    padding: 12px;
+}
+
+.start-search input {
+    width: 100%;
+
+    padding: 10px;
+
+    background: #02070c;
+
+    border:
+        1px solid
+        rgba(0,246,255,.15);
+
+    outline: 0;
+
+    color: white;
+
+    font-family: inherit;
+
+    font-size: 9px;
+}
+
+.start-apps {
+    padding: 0 12px 12px;
+}
+
+.start-apps button {
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 12px;
+
+    border: 0;
+
+    background: transparent;
+
+    color: var(--muted);
+
+    font-family: inherit;
+
+    text-align: left;
+
+    font-size: 9px;
+
+    cursor: pointer;
+}
+
+.start-apps button span {
+    color: var(--cyan);
+
+    width: 20px;
+
+    text-align: center;
+
+    font-size: 15px;
+}
+
+.start-apps button:hover {
+    background:
+        rgba(0,246,255,.07);
+
+    color: white;
+}
+
+.start-footer {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 12px;
+
+    border-top:
+        1px solid var(--border);
+
+    color: var(--muted);
+
+    font-size: 8px;
+}
+
+.start-footer button {
+    border: 0;
+
+    background: transparent;
+
+    color: var(--red);
+
+    font-size: 18px;
+
+    cursor: pointer;
+}
+
+
+/* =================================
+   NOTIFICATION
+================================= */
+
+.notification {
+    position: absolute;
+
+    right: 20px;
+    bottom: 65px;
+
+    width: 270px;
+
+    padding: 15px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    background:
+        rgba(5,15,20,.95);
+
+    border:
+        1px solid
+        rgba(0,255,136,.25);
+
+    box-shadow:
+        0 15px 40px
+        rgba(0,0,0,.5);
+
+    z-index: 650;
+
+    transform:
+        translateX(130%);
+
+    transition: .4s;
+}
+
+.notification.show {
+    transform:
+        translateX(0);
+}
+
+.notification-icon {
+    width: 30px;
+    height: 30px;
+
+    display: grid;
+
+    place-items: center;
+
+    border: 1px solid var(--green);
+
+    color: var(--green);
+}
+
+.notification strong {
+    color: var(--green);
+
+    font-size: 9px;
+}
+
+.notification p {
+    margin-top: 5px;
+
+    color: var(--muted);
+
+    font-size: 9px;
+}
+
+
+/* =================================
+   MOBILE
+================================= */
+
+@media (max-width: 700px) {
+
+    .system-center {
+        display: none;
+    }
+
+    .system-right span:first-child {
+        display: none;
+    }
+
+    .desktop-icons {
+        left: 12px;
+    }
+
+    .terminal-window,
+    .app-window {
+        width: 94%;
+
+        height: 70%;
+    }
+
+    .hud-circle {
+        width: 220px;
+        height: 220px;
+    }
+
+    .task-app {
+        min-width: 50px;
+
+        width: 50px;
+
+        overflow: hidden;
+
+        white-space: nowrap;
+    }
+
+    .task-status span:not(:first-child) {
+        display: none;
+    }
+
+    .start-menu {
+        width: 90%;
+    }
+
+}
